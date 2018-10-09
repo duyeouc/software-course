@@ -93,3 +93,69 @@
 
 ![](http://ss1.sinaimg.cn/large/006OpZDely1fvtnasy1ncj30ev07mjrz&690)
 
+### 4. GDAL库函数的使用记录
+
+1. 读取图像
+   ```
+    GDALAllRegister();    
+    GDALDataset *poDataset;
+    QString filename;
+    filename=QFileDialog::getOpenFileName(this,
+                                          tr("Choose Images"),
+                                          tr("All Fles (*.*)"));
+    //Open the image
+    QByteArray ba = filename.toLatin1();
+    poDataset = (GDALDataset*) GDALOpen( ba.data(),GA_ReadOnly );
+   ```
+
+2. 获取图像的基本信息
+
+   描述信息：const char*  GDALDataset::GetDriver()->GetDescription()，通常是图像的格式<br>
+   图像大小：  <br>
+      图像宽度  int  GDALDataset::GetRasterXSize() <br>
+      图像高度  int  GDALDataset::GetRasterYSize() <br>
+      波段数：  int  GDALDataset::GetRasterCount()  <br>
+   获取波段的方法： 
+         ```
+         GDALRasterBand *poBand;
+         poBand = poDataset->GetRasterBand(i)     poBand为指向第i个波段的指
+         ```
+   波段尺寸：
+         ```
+         int  poBand->GetXSize();
+         int  poBand->GetYSize()
+         ```
+3. 关于RasterIO
+   
+   函数原型：
+   ```
+   CPLErr GDALRasterBand::RasterIO (   GDALRWFlag eRWFlag,
+   int     nXOff,
+   int     nYOff,
+   int     nXSize,
+   int     nYSize,
+   void *  pData,
+   int     nBufXSize,
+   int     nBufYSize,
+   GDALDataType    eBufType,
+   int     nPixelSpace,
+   int     nLineSpace 
+   )
+   ```
+   参数解释：
+   ```
+   GDALRWFlag：GF_Read 和GF_Write，分别表示读取数据和写入数据;
+   nXOff, nYOff：表示读取或者写入图像数据的起始坐标图像的左上角坐标;
+   nXSize, nYSize:
+      表示读取或者写入图像数据的窗口大小，nXSize表示宽度，nYSize表示高度;
+   pData:指向存储数据的一个指针;
+   nBufXSize,nBufYSize:
+       指定缓冲区的大小;
+       pData的大小应当是nBufXSize×nBufYSize;
+   eBufType:缓冲区数据类型;
+   nPixelSpace，nLineSpace：
+       0作为缺省值;
+       可以用于控制存取的内存数据的排列顺序;
+       可以使用这两个参数将图像数据按照另一种组织形式读取内存缓冲区中;
+   
+   ```
