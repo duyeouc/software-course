@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
 	void task1();
-	void task2(); //ÉùÃ÷º¯Êı
+	void task2(); //å£°æ˜
 	//task1();
 	task2();
 	return 0;
