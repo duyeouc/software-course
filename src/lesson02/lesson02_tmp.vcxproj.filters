@@ -32,5 +32,11 @@
     <ClCompile Include="lesson02_tmp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="task2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="task1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
