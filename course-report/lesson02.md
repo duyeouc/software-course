@@ -13,7 +13,7 @@
 
 3. 本周有两个任务，第一个任务是修改指定区域红色通道像素值，第二个任务是修改两指定区域为白色/黑色，任务二即为“照葫芦画瓢”，确定环境后，建立task1.cpp文件，解决任务一，代码如下：
 
-   ```
+   ```c++
    #include "stdafx.h"
    #include <iostream>
    #include "./gdal/gdal_priv.h"
@@ -85,7 +85,7 @@
 
    建立task2.cpp文件，解决任务二，代码如下：
 
-   ```
+   ```c++
    //task2
    /*
    	要求：
@@ -172,7 +172,7 @@
 
    主函数文件lesson02_tmp.cpp中，主函数编写如下：
 
-   ```
+   ```c++
    #include "stdafx.h"
    #include <iostream>
    #include "./gdal/gdal_priv.h"
